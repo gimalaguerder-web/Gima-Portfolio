@@ -1056,3 +1056,20 @@ footer {
         min-height: 300px;
     }
 }
+ /* FINAL WORK GRID SIZE */
+
+#work .projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+}
+
+#work .project-card {
+    width: 100% !important;
+}
+
+#work .project-video {
+    aspect-ratio: 4 / 5 !important;
+}
