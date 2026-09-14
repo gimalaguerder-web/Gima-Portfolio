@@ -324,16 +324,13 @@ video {
 
 .hero-photo {
     position: relative;
-
     z-index: 3;
 
     width: auto;
     height: 650px;
-
     max-width: none;
 
     object-fit: contain;
-
     align-self: flex-end;
 
     filter: drop-shadow(
