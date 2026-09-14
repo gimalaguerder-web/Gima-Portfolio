@@ -101,23 +101,93 @@ video {
 ========================= */
 
 .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    color: var(--cream);
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+
+    gap: 70px;
+    padding: 130px 5% 80px;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-label {
+    display: inline-block;
+    margin-bottom: 22px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    color: #b7c9dc;
+}
+
+.hero h1 {
+    font-size: clamp(52px, 7vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    color: #8fb2d2;
+}
+
+.hero p {
+    max-width: 570px;
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    color: var(--muted);
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* PHOTO */
+
 .hero-photo {
     min-height: 500px;
+
     border-radius: 24px;
-    background: #173b61;
+
+    background: linear-gradient(
+        145deg,
+        #173b61,
+        #0d2d50
+    );
+
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
     overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.12);
 }
 
 .hero-photo img {
     width: 100%;
     max-width: 500px;
     height: auto;
+
+    display: block;
     object-fit: contain;
 }
-}
+
+/* BUTTONS */
 
 .btn {
     display: inline-flex;
@@ -149,27 +219,6 @@ video {
 
 .btn-secondary:hover {
     background: rgba(255,255,255,0.08);
-}
-
-.hero-placeholder {
-    min-height: 500px;
-    border-radius: 24px;
-
-    background: linear-gradient(
-        145deg,
-        #173b61,
-        #0d2d50
-    );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255,255,255,0.12);
-
-    color: rgba(255,255,255,0.45);
-    font-size: 13px;
-    letter-spacing: 2px;
 }
 
 /* =========================
@@ -461,8 +510,8 @@ footer {
         padding-top: 120px;
     }
 
-    .hero-placeholder {
-        min-height: 400px;
+    .hero-photo {
+         min-height: 400px;
     }
 
     .about-grid {
@@ -502,7 +551,7 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .hero-placeholder {
+    .hero-photo  {
         min-height: 300px;
     }
 }
