@@ -13,23 +13,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const selectedCategory = filter.dataset.filter;
 
+            // Update active filter
             filters.forEach(button => {
                 button.classList.remove("active");
             });
 
             filter.classList.add("active");
 
+            // Show / hide projects
             projects.forEach(project => {
 
-                const categories = project.dataset.category || "";
+                const categories =
+                    project.dataset.category || "";
 
                 if (
                     selectedCategory === "all" ||
                     categories.includes(selectedCategory)
                 ) {
+
                     project.classList.remove("hidden");
+
                 } else {
+
                     project.classList.add("hidden");
+
                 }
 
             });
@@ -40,78 +47,109 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
-   VIDEO MODAL
-========================= */
+       VIDEO MODAL
+    ========================= */
 
-const modal = document.getElementById("videoModal");
-const viewer = document.getElementById("videoViewer");
-const closeButton = document.getElementById("videoModalClose");
+    const modal =
+        document.getElementById("videoModal");
 
-const clickableProjects =
-    document.querySelectorAll(".project-clickable");
+    const viewer =
+        document.getElementById("videoViewer");
+
+    const closeButton =
+        document.getElementById("videoModalClose");
+
+    const clickableProjects =
+        document.querySelectorAll(".project-clickable");
 
 
-clickableProjects.forEach(project => {
+    // Open video viewer
+    clickableProjects.forEach(project => {
 
-    project.addEventListener("click", () => {
+        project.addEventListener("click", () => {
 
-        const videoUrl = project.dataset.video;
+            const videoUrl =
+                project.dataset.video;
 
-        if (!videoUrl) return;
+            if (!videoUrl) return;
 
-        viewer.src = videoUrl;
+            // Load the selected video
+            viewer.src = videoUrl;
 
-        modal.classList.add("active");
+            // Show modal
+            modal.classList.add("active");
 
-        document.body.style.overflow = "hidden";
+            // Prevent background scrolling
+            document.body.style.overflow = "hidden";
+
+        });
 
     });
 
-});
 
+    // Close video viewer
+    function closeVideo() {
 
-function closeVideo() {
+        modal.classList.remove("active");
 
-    modal.classList.remove("active");
+        // Restore page scrolling
+        document.body.style.overflow = "";
 
-    document.body.style.overflow = "";
+        // Stop video and reset player
+        viewer.src = "";
 
-    viewer.src = "";
-
-}
-
-
-closeButton.addEventListener("click", closeVideo);
-
-
-/* Click outside video to close */
-
-modal.addEventListener("click", event => {
-
-    if (event.target === modal) {
-        closeVideo();
     }
 
-});
 
+    // Close button
+    if (closeButton) {
 
-/* ESC key */
+        closeButton.addEventListener(
+            "click",
+            closeVideo
+        );
 
-document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-        closeVideo();
     }
 
-});
+
+    // Close when clicking outside the video
+    if (modal) {
+
+        modal.addEventListener("click", event => {
+
+            if (event.target === modal) {
+
+                closeVideo();
+
+            }
+
+        });
+
+    }
+
+
+    // Close with ESC key
+    document.addEventListener("keydown", event => {
+
+        if (event.key === "Escape") {
+
+            closeVideo();
+
+        }
+
+    });
+
 
     /* =========================
        NAVBAR
     ========================= */
 
-    const navbar = document.querySelector(".navbar");
+    const navbar =
+        document.querySelector(".navbar");
 
     window.addEventListener("scroll", () => {
+
+        if (!navbar) return;
 
         if (window.scrollY > 50) {
 
@@ -132,27 +170,30 @@ document.addEventListener("keydown", event => {
        SMOOTH SCROLL
     ========================= */
 
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
 
-        link.addEventListener("click", event => {
+            link.addEventListener("click", event => {
 
-            const targetId = link.getAttribute("href");
+                const targetId =
+                    link.getAttribute("href");
 
-            const target =
-                document.querySelector(targetId);
+                const target =
+                    document.querySelector(targetId);
 
-            if (target) {
+                if (target) {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
 
-            }
+                }
+
+            });
 
         });
-
-    });
 
 });
