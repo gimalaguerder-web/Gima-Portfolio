@@ -50,40 +50,47 @@ document.addEventListener("DOMContentLoaded", () => {
    VIDEO MODAL
 ========================= */
 
-const modal =
-    document.getElementById("videoModal");
+const modal = document.getElementById("videoModal");
+const viewer = document.getElementById("videoViewer");
+const closeButton = document.getElementById("videoModalClose");
 
-const viewer =
-    document.getElementById("videoViewer");
+const videoProjects = document.querySelectorAll(".project-card[data-video]");
 
-const closeButton =
-    document.getElementById("videoModalClose");
-
-const clickableProjects =
-    document.querySelectorAll(".project-clickable");
-
-
-/* OPEN VIDEO BY CLICKING ANYWHERE ON CARD */
-
-clickableProjects.forEach(project => {
-
-    project.addEventListener("click", () => {
-
-        const videoUrl =
-            project.dataset.video;
+videoProjects.forEach(card => {
+    card.addEventListener("click", () => {
+        const videoUrl = card.dataset.video;
 
         if (!videoUrl) return;
 
         viewer.src = videoUrl;
-
         modal.classList.add("active");
-
         document.body.style.overflow = "hidden";
-
     });
-
 });
 
+function closeVideo() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    viewer.src = "";
+}
+
+if (closeButton) {
+    closeButton.addEventListener("click", closeVideo);
+}
+
+if (modal) {
+    modal.addEventListener("click", event => {
+        if (event.target === modal) {
+            closeVideo();
+        }
+    });
+}
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeVideo();
+    }
+});
 
 /* CLOSE VIDEO */
 
