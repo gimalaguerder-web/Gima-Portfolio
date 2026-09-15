@@ -40,72 +40,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
-       VIDEO MODAL
-    ========================= */
+   VIDEO MODAL
+========================= */
 
-    const modal = document.getElementById("videoModal");
-    const viewer = document.getElementById("videoViewer");
-    const closeButton = document.getElementById("videoModalClose");
+const modal = document.getElementById("videoModal");
+const viewer = document.getElementById("videoViewer");
+const closeButton = document.getElementById("videoModalClose");
 
-    const clickableProjects =
-        document.querySelectorAll(".project-clickable");
+const clickableProjects =
+    document.querySelectorAll(".project-clickable");
 
 
-    clickableProjects.forEach(project => {
+clickableProjects.forEach(project => {
 
-        project.addEventListener("click", () => {
+    project.addEventListener("click", () => {
 
-            const videoUrl = project.dataset.video;
+        const videoUrl = project.dataset.video;
 
-            if (!videoUrl) return;
+        if (!videoUrl) return;
 
-            viewer.src = videoUrl;
+        viewer.src = videoUrl;
 
-            modal.classList.add("active");
+        modal.classList.add("active");
 
-            document.body.style.overflow = "hidden";
-
-        });
+        document.body.style.overflow = "hidden";
 
     });
 
+});
 
-    function closeVideo() {
 
-        modal.classList.remove("active");
+function closeVideo() {
 
-        document.body.style.overflow = "";
+    modal.classList.remove("active");
 
-        /* Reset iframe so video stops */
-        viewer.src = "";
+    document.body.style.overflow = "";
 
+    viewer.src = "";
+
+}
+
+
+closeButton.addEventListener("click", closeVideo);
+
+
+/* Click outside video to close */
+
+modal.addEventListener("click", event => {
+
+    if (event.target === modal) {
+        closeVideo();
     }
 
-
-    closeButton.addEventListener("click", closeVideo);
-
-
-    /* Close when clicking outside video */
-
-    modal.addEventListener("click", event => {
-
-        if (event.target === modal) {
-            closeVideo();
-        }
-
-    });
+});
 
 
-    /* Close with ESC */
+/* ESC key */
 
-    document.addEventListener("keydown", event => {
+document.addEventListener("keydown", event => {
 
-        if (event.key === "Escape") {
-            closeVideo();
-        }
+    if (event.key === "Escape") {
+        closeVideo();
+    }
 
-    });
-
+});
 
     /* =========================
        NAVBAR
