@@ -1402,3 +1402,29 @@ footer {
     z-index: 5;
     pointer-events: none;
 }
+/* CENTER PLAY BUTTON */
+#work .project-video {
+    position: relative;
+}
+
+#work .project-video .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 90px;
+    height: 90px;
+    border-radius: 18px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background: rgba(10, 14, 20, 0.95);
+    color: #ffffff;
+    font-size: 30px;
+    
+    z-index: 10;
+    pointer-events: none;
+}
