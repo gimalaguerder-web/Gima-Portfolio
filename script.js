@@ -46,46 +46,90 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =========================
-       VIDEO MODAL
-    ========================= */
+   /* =========================
+   VIDEO MODAL
+========================= */
 
-    const modal =
-        document.getElementById("videoModal");
+const modal =
+    document.getElementById("videoModal");
 
-    const viewer =
-        document.getElementById("videoViewer");
+const viewer =
+    document.getElementById("videoViewer");
 
-    const closeButton =
-        document.getElementById("videoModalClose");
+const closeButton =
+    document.getElementById("videoModalClose");
 
-    const clickableProjects =
-        document.querySelectorAll(".project-clickable");
+const clickableProjects =
+    document.querySelectorAll(".project-clickable");
 
 
-    // Open video viewer
-    clickableProjects.forEach(project => {
+/* OPEN VIDEO BY CLICKING ANYWHERE ON CARD */
 
-        project.addEventListener("click", () => {
+clickableProjects.forEach(project => {
 
-            const videoUrl =
-                project.dataset.video;
+    project.addEventListener("click", () => {
 
-            if (!videoUrl) return;
+        const videoUrl =
+            project.dataset.video;
 
-            // Load the selected video
-            viewer.src = videoUrl;
+        if (!videoUrl) return;
 
-            // Show modal
-            modal.classList.add("active");
+        viewer.src = videoUrl;
 
-            // Prevent background scrolling
-            document.body.style.overflow = "hidden";
+        modal.classList.add("active");
 
-        });
+        document.body.style.overflow = "hidden";
 
     });
 
+});
+
+
+/* CLOSE VIDEO */
+
+function closeVideo() {
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+    viewer.src = "";
+
+}
+
+
+/* CLOSE BUTTON */
+
+closeButton.addEventListener(
+    "click",
+    closeVideo
+);
+
+
+/* CLICK OUTSIDE VIDEO */
+
+modal.addEventListener("click", event => {
+
+    if (event.target === modal) {
+
+        closeVideo();
+
+    }
+
+});
+
+
+/* ESC KEY */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+        closeVideo();
+
+    }
+
+});
 
     // Close video viewer
     function closeVideo() {
